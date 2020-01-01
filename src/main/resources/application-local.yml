@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/stock-db
+stock:
+  exchange:
+    url: http://localhost:9000

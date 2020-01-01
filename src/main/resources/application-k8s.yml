@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongo:27017/stock-db
+
+#Leanve below value to default value to blank. In this case the proxy will use the service name as URL to resolved the service 
+stock:
+  exchange:
+    url: ""
