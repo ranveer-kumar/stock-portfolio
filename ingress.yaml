@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+
+spec:
+    rules:
+      - http:
+          paths:
+            - path: /stock-exchange/*
+              backend:
+                serviceName: stock-exchange
+                servicePort: 9000
+            - path:
+              backend:
+                serviceName: stock-portfolio
+                servicePort: 9001
