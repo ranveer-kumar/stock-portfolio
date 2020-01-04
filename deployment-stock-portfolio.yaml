@@ -30,7 +30,7 @@ spec:
         - name: stock-portfolio
           imagePullPolicy: Always
           #image: 10.140.64.116:5000/demo-k8s-consul-b:0.0.1-SNAPSHOT
-          image: 10.140.64.116:5000/stock-portfolio:0.0.1-SNAPSHOT
+          image: 192.168.56.2:5000/stock-portfolio:0.0.1-SNAPSHOT
 #          command: [ "exec", "java"]
 #          args: 
 #            - "-cp"
