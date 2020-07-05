@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: stock-portfolio
+  name: stock-portfolio-service
   labels:
-    app: stock-portfolio
+    app: stock-portfolio-service
     type: backend
 spec:
-  replicas: 2
+  replicas: 1
   minReadySeconds: 45
   selector:
     matchLabels:
-      app: stock-portfolio
+      app: stock-portfolio-service
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,18 +19,19 @@ spec:
   template:
     metadata:
       labels:
-        app: stock-portfolio
+        app: stock-portfolio-service
   template:
     metadata:
-      name: stock-portfolio-pod
+      name: stock-portfolio-service-pod
       labels:
-        app: stock-portfolio
+        app: stock-portfolio-service
     spec:
       containers:
-        - name: stock-portfolio
+        - name: stock-portfolio-service
           imagePullPolicy: Always
           #image: 10.140.64.116:5000/demo-k8s-consul-b:0.0.1-SNAPSHOT
-          image: 192.168.56.2:5000/stock-portfolio:0.0.1-SNAPSHOT
+          #image: 192.168.56.2:5000/stock-portfolio-service:0.0.1-SNAPSHOT
+          image: localhost:5000/stock-portfolio-service:0.0.1-SNAPSHOT
 #          command: [ "exec", "java"]
 #          args: 
 #            - "-cp"
@@ -85,8 +86,9 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: stock-portfolio
-  name: stock-portfolio
+    app: stock-portfolio-service
+    spring-boot: "true"
+  name: stock-portfolio-service
   namespace: default
 spec:
   type: NodePort
@@ -97,4 +99,4 @@ spec:
     port: 9001
     protocol: TCP
   selector:
-    app: stock-portfolio
+    app: stock-portfolio-service

@@ -31,8 +31,11 @@ public class PortfolioController {
 	}
 	@GetMapping("/api/{customerId}")
 	public Optional<PortfolioBean> get(@PathVariable("customerId") String customerId) {
-		return repository.findByCustomerId(customerId);
+		Optional<PortfolioBean> t = repository.findByCustomerId(customerId);
+		return t;
 	} 
+	
+	
 	@GetMapping("/api/portfolio/{customerId}")
 	public Optional<PortfolioBean> getPortFolio(@PathVariable("customerId") String customerId) {
 		Optional<PortfolioBean> portfolioBean = repository.findByCustomerId(customerId);
@@ -58,5 +61,10 @@ public class PortfolioController {
 		}
 		
 		return portfolioBean;
+	}
+	
+	public Optional<ExchangeBean> fallbackGetStockPriceByID(String stockId, Throwable t) {
+		log.error("ERROR: Fallback getPortFolioByID(String stockId): from controller");
+		return null;
 	}
 }

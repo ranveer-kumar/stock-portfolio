@@ -4,6 +4,7 @@ logging:
     org.springframework: ERROR
     com.ht: INFO
     com.ht.cms.backend.feign: DEBUG
+
 spring:
   profiles:
     active: local
@@ -11,7 +12,7 @@ spring:
     banner-mode: console
     allow-bean-definition-overriding: true
   application: 
-    name: stock-portfolio
+    name: stock-portfolio-service
 server:
   port: 9001
 management: 
@@ -22,11 +23,11 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-  health:
-    status:
-      http-mapping:
-          DOWN: 503
-          UP: 200  
+#  health:
+#    status:
+#      http-mapping:
+#          DOWN: 503
+#          UP: 200  
 
 
           
