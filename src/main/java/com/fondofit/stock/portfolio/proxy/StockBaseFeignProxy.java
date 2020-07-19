@@ -11,8 +11,9 @@ import com.fondofit.stock.portfolio.model.ExchangeBean;
 //import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 
-@FeignClient(name = "stock-exchange-service", fallback = StockBaseFeignProxyFallBack.class, url = "${stock.exchange.url}")
-//@RibbonClient(name = "stock-exchange")
+@FeignClient(name = "stock-exchange-service", fallback = StockBaseFeignProxyFallBack.class, url = "${stock.exchange.url:http://localhost:9000}")
+//@FeignClient(name = "stock-exchange-service",fallback = StockBaseFeignProxyFallBack.class, url = "${STOCK_EXCHANGE_URI:http://localhost}:9000")
+//@RibbonClient(name = "stock-exchange-service")
 //@CircuitBreaker(name = "stock-exchange")
 public interface StockBaseFeignProxy {
 

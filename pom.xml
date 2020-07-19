@@ -12,7 +12,7 @@
 	<groupId>com.fondofit</groupId>
 	<artifactId>stock-portfolio-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>stock-portfolio</name>
+	<name>stock-portfolio-service</name>
 	<description>Stock portfolio service</description>
 
 	<properties>
@@ -128,7 +128,25 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.6</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>localhost:5000/${project.name}</repository>
+					<tag>${project.version}</tag>
+					<skipDockerInfo>true</skipDockerInfo>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

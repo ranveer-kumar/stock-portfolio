@@ -6,7 +6,7 @@ metadata:
     app: stock-portfolio-service
     type: backend
 spec:
-  replicas: 1
+  replicas: 2
   minReadySeconds: 45
   selector:
     matchLabels:
@@ -32,6 +32,15 @@ spec:
           #image: 10.140.64.116:5000/demo-k8s-consul-b:0.0.1-SNAPSHOT
           #image: 192.168.56.2:5000/stock-portfolio-service:0.0.1-SNAPSHOT
           image: localhost:5000/stock-portfolio-service:0.0.1-SNAPSHOT
+          env:
+            - name: SPRING_PROFILES_ACTIVE #pring.profiles.active=k8s
+              value: k8s
+#                      env:     #CHANGE
+#          - name: CURRENCY_EXCHANGE_URI
+#            valueFrom:
+#              configMapKeyRef:
+#                key: CURRENCY_EXCHANGE_URI
+#                name: currency-exchange-uri-demo
 #          command: [ "exec", "java"]
 #          args: 
 #            - "-cp"
@@ -55,13 +64,13 @@ spec:
           ports:
           - name: liveness-port
             containerPort: 9001
-          resources: #CHANGE
-            requests:
-              cpu: 100m
-              memory: 256Mi
-            limits:
-              cpu: 500m
-              memory: 512Mi #256Mi
+#          resources: #CHANGE
+#            requests:
+#              cpu: 100m
+#              memory: 256Mi
+#            limits:
+#              cpu: 500m
+#              memory: 512Mi #256Mi
 
 #          readineseProbe:
 #            httpGet:

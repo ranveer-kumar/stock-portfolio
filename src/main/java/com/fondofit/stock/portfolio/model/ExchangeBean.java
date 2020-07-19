@@ -13,6 +13,7 @@ public class ExchangeBean {
 	private String id;
 	private String name;
 	private Float price;
+	private String instanceID;
 	
 }
 

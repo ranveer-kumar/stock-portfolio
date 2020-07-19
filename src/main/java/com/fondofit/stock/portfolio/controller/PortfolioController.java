@@ -15,11 +15,15 @@ import com.fondofit.stock.portfolio.model.PortfolioBean;
 import com.fondofit.stock.portfolio.model.Stocks;
 import com.fondofit.stock.portfolio.proxy.StockBaseFeignProxy;
 import com.fondofit.stock.portfolio.repository.PortfolioRepository;
+import com.fondofit.stock.portfolio.service.InstanceInformation;
 
 @RestController
 public class PortfolioController {
 
 	Logger log = LoggerFactory.getLogger(PortfolioController.class);
+
+	@Autowired
+	private InstanceInformation instanceInformation;
 	
 	@Autowired
 	PortfolioRepository repository;
@@ -27,11 +31,12 @@ public class PortfolioController {
 	StockBaseFeignProxy stockBaseFeignProxy;
 	@GetMapping("/")
 	public String helloPortfolio() {
-		return "Hello from portfolio";
+		return "Hello from portfolio: instance id = "+ instanceInformation.retrieveInstanceInfo();
 	}
 	@GetMapping("/api/{customerId}")
 	public Optional<PortfolioBean> get(@PathVariable("customerId") String customerId) {
 		Optional<PortfolioBean> t = repository.findByCustomerId(customerId);
+		t.get().setInstanceID(instanceInformation.retrieveInstanceInfo());
 		return t;
 	} 
 	
@@ -60,6 +65,7 @@ public class PortfolioController {
 			portfolioBean.get().setPortfolioValue(totalValue);
 		}
 		
+		portfolioBean.get().setInstanceID(instanceInformation.retrieveInstanceInfo());
 		return portfolioBean;
 	}
 	

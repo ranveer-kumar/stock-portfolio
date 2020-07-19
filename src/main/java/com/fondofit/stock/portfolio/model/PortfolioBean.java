@@ -15,6 +15,7 @@ public class PortfolioBean {
 	private String customerId;
 	private List<Stocks> stocks;
 	private Float portfolioValue;
+	private String instanceID;
 	
 }
 
