@@ -59,6 +59,7 @@ public class PortfolioController {
 				{
 					Float stockValue = stock.getCount() * exchangeBean.get().getPrice();
 					stock.setValue(stockValue);
+					stock.setName(exchangeBean.get().getName());
 					totalValue = totalValue + stockValue;
 				}
 			}

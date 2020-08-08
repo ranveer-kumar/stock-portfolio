@@ -7,6 +7,7 @@ import lombok.Data;
 public class Stocks {
 
 	private String id;
+	private String name;
 	private Float value;
 	private int count;
 }

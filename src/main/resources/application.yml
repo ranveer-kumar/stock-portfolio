@@ -2,8 +2,8 @@ logging:
   level:
     .: ERROR
     org.springframework: ERROR
-    com.ht: INFO
-    com.ht.cms.backend.feign: DEBUG
+    com.fondofit: INFO
+    com.fondofit.stock.portfolio.proxy: DEBUG
 
 spring:
   profiles:
